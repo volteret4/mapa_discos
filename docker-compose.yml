@@ -1,0 +1,11 @@
+services:
+  mapa-discos:
+    build: .
+    container_name: mapa-discos
+    restart: unless-stopped
+    environment:
+      - MUSICA_LOCAL_DB=/musica_local.sqlite
+    volumes:
+      - ${MUSICA_LOCAL:-./datos/musica_local.sqlite}:/musica_local.sqlite:ro
+    ports:
+      - "${PUERTO:-8779}:5000"
